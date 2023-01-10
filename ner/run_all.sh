@@ -1,5 +1,6 @@
 train_path=$( echo $1 | tr '.' '_' )_train
 zero_path=$( echo $1 | tr '.' '_' )_zero_ar
+save_path=/content/drive/MyDrive/zeroshot
 
 python run_ner.py \
       --model_name_or_path bert-base-multilingual-cased \
@@ -22,11 +23,11 @@ python run_ner.py \
       --output_dir /tmp/$zero_path \
       --dataset_config_name PAN-X.ar
 
-mkdir /content/$train_path
-mkdir /content/$zero_path
+mkdir $save_path/$train_path
+mkdir $save_path/$zero_path
 
-cp /tmp/$train_path/all_results.json /content/$train_path/all_results.json
-cp /tmp/$zero_path/all_results.json /content/$zero_path/all_results.json
+cp /tmp/$train_path/all_results.json $save_path/$train_path/all_results.json
+cp /tmp/$zero_path/all_results.json $save_path/$zero_path/all_results.json
 
 rm -rf /tmp/$train_path
 rm -rf /tmp/$zero_path
