@@ -1,6 +1,6 @@
 train_path=xnli_$1_train
 zero_path=xnli_$1_zero_ar
-save_path=/content/drive/MyDrive/zeroshot/nli
+save_path=/content/drive/MyDrive/zeroshot/nli-50k
 
 python run_xnli.py \
       --model_name_or_path bert-base-multilingual-cased \
@@ -12,7 +12,7 @@ python run_xnli.py \
       --max_seq_length 128 \
       --output_dir /tmp/$train_path \
       --language $1 \
-      --max_train_samples 10000 \
+      --max_train_samples 50000 \
       --overwrite_output_dir \
       --save_steps -1
 

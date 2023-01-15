@@ -279,7 +279,7 @@ def main():
         eval_dataset = load_dataset(
             "xnli",
             model_args.language,
-            split="validation",
+            split="test",
             cache_dir=model_args.cache_dir,
             use_auth_token=True if model_args.use_auth_token else None,
         )
