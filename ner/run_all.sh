@@ -1,10 +1,10 @@
-train_path=$( echo $1 | tr '.' '_' )_train
-zero_path=$( echo $1 | tr '.' '_' )_zero_ar
-save_path=/content/drive/MyDrive/zeroshot
+train_path=ner_$1_train
+zero_path=ner_$1_zero_ar
+save_path=/content/drive/MyDrive/zeroshot/ner-massive
 
 python run_ner.py \
       --model_name_or_path bert-base-multilingual-cased \
-      --dataset_name xtreme \
+      --dataset_name qanastek/MASSIVE \
       --do_train \
       --do_eval \
       --per_device_train_batch_size 12 \
@@ -15,13 +15,13 @@ python run_ner.py \
 
 python run_ner.py \
       --model_name_or_path /tmp/$train_path \
-      --dataset_name xtreme \
+      --dataset_name qanastek/MASSIVE \
       --do_eval \
       --per_device_train_batch_size 12 \
       --learning_rate 3e-5 \
       --num_train_epochs 2 \
       --output_dir /tmp/$zero_path \
-      --dataset_config_name PAN-X.ar
+      --dataset_config_name ar-SA
 
 mkdir $save_path/$train_path
 mkdir $save_path/$zero_path
